@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=11">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mi bloc</title>
+
+    <!-- DECOMENTAR SOLO PARA DEBUGGING O TSTING -->
+    <!-- <style>
+        body {
+            /* background-color: black !important; */
+            background-color: yellow !important;
+        }
+
+        .container {
+            background-color: yellow !important;
+        }
+
+        .form-group-cont {
+            background-color: rgb(236, 55, 55) !important;
+        }
+
+        .ticketForm {
+            background-color: rgb(113, 113, 243) !important;
+        }
+
+        .contPinglabel {
+            background-color: rgb(28, 230, 61) !important;
+        }
+
+        .boxPing {
+            background-color: rgb(160, 71, 219) !important;
+        }
+
+        #contPinglabel {
+            background-color: gray;
+        }
+    </style> -->
+
+    <!-- ✅ CSS SE INYECTARÁ AQUÍ POR AutoHotkey -->
+    <!-- Variables, estilos globales, menú, animaciones -->
+</head>
+
+<body>
+    <!-- ✅ MENÚ REUTILIZABLE SE INYECTARÁ AQUÍ -->
+    <div id="menu-container"></div>
+
+    <!-- Contenedor principal -->
+    <div class="container">
+        <div class="header">
+            <h4>PLANTILLA BÁSICA OBLIGATORIA</h4>
+        </div>
+
+        <form id="ticketForm" onsubmit="return enviarFormulario();">
+            <div id="form-group-cont">
+
+                <div class="form-group form-group-horizontal">
+                    <label>NOMBRE DEL CLIENTE:</label>
+                    <input type="text" id="nombre" tabindex="1" required
+                        placeholder="Ingrese el nombre completo del cliente">
+                    <button type="button" class="btn-icon btn-copy" onclick="copiarValor('nombre')" tabindex="-1"
+                        title="Copiar valor">📄</button>
+                    <button type="button" class="btn-icon btn-view" tabindex="-1" title="Ver ruta">🐾</button>
+                    <div class="tooltip-path">Path: liberate/spinDB/Ots</div>
+                </div>
+
+                <div class="form-group form-group-horizontal">
+                    <label>NÚMERO DE CÉDULA:
+                        <!-- <span class="required">*</span> -->
+                    </label>
+                    <input type="text" id="cedula" tabindex="2" required placeholder="Ejemplo: 1234567890">
+                </div>
+
+                <div class="form-group form-group-horizontal">
+                    <label>TELÉFONO:
+                        <!-- <span class="required">*</span> -->
+                    </label>
+                    <input type="tel" id="telefono" tabindex="3" required placeholder="Ejemplo: 3001234567">
+                </div>
+
+                <div class="form-group form-group-horizontal">
+                    <label>CUENTA:
+                        <!-- <span class="required">*</span> -->
+                    </label>
+                    <input type="text" id="cuenta" tabindex="4" required placeholder="Número de cuenta">
+                </div>
+
+                <div class="form-group form-group-horizontal">
+                    <label>REPETITIVO:
+                        <!-- <span class="required">*</span> -->
+                    </label>
+                    <input type="text" id="repetitivo" tabindex="5" required placeholder="Dato repetitivo">
+                </div>
+
+                <div class="form-group form-group-horizontal">
+                    <label>GARANTÍA:
+                        <!-- <span class="required">*</span>-->
+                    </label>
+                    <input type="text" id="garantia" tabindex="6" required placeholder="Número de garantía">
+                </div>
+
+                <div class="form-group form-group-horizontal">
+                    <label>MASIVO:
+                        <!-- <span class="required">*</span> -->
+                    </label>
+                    <input type="text" id="masivo" tabindex="7" required placeholder="Dato masivo">
+                </div>
+
+                <div class="form-group form-group-horizontal">
+                    <label>RIESGO:
+                        <!-- <span class="required">*</span>-->
+                    </label>
+                    <input type="text" id="riesgo" tabindex="8" required placeholder="Nivel de riesgo">
+                </div>
+
+                <div class="form-group form-group-horizontal">
+                    <label>TELECABLE:
+                        <!-- <span class="required">*</span>-->
+                    </label>
+                    <input type="text" id="telecable" tabindex="9" required placeholder="ID Telecable">
+                </div>
+
+                <div class="form-group form-group-horizontal">
+                    <label>MOTIVO:
+                        <!-- <span class="required">*</span>-->
+                    </label>
+                    <!-- <input type="text" id="motivo" tabindex="10" required placeholder="Motivo de contacto"> -->
+                    <select name="" id="select">
+                        <option value="" selected>Seleccionar</option>
+                        <option class="optionPing" value="1">No Navega</option>
+                        <option class="optionPing" value="2">Sin señal</option>
+                        <option class="optionPing" value="3">Otro</option>
+                        <option class="optionPing" value="4">Intermitencia</option>
+                    </select>
+                    <!-- <span><button></button></span> -->
+                </div>
+
+                <div class="form-group form-group-horizontal contPinglabel">
+                    <input id="boxPing" type="text" placeholder="Introduce la IP Publica" inputmode="numeric"
+                        pattern="[0-9.]*">
+                    <!-- <button type="button" class="btn-icon btn-copy-ping" onclick="copiarEstadisticasPing()"
+                        tabindex="-1" title="Copiar estadísticas">📋</button> -->
+                    <div id="contPinglabel" style="display:none;width:80%;margin-top:4px; margin-bottom: #999494;">
+                    </div>
+                </div>
+
+            </div>
+
+        </form>
+    </div>
+
+    <div id="copyNotification"
+        style="display:none; position:fixed; top:30px; right:20px; background:#98e798; color:white; padding:10px 20px; border-radius:16px; font-size:12px; z-index:9999; box-shadow:0 4px 12px rgba(0,0,0,0.3);">
+        Copiado
+    </div>
+
+    <!-- ✅ JAVASCRIPT SE INYECTARÁ AQUÍ POR AutoHotkey -->
+    <!-- Scripts del menú, formulario y utilidades -->
+</body>
+
+</html>

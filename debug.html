@@ -1,0 +1,1320 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=11">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mi bloc</title>
+
+    <!-- DECOMENTAR SOLO PARA DEBUGGING O TSTING -->
+    <!-- <style>
+        body {
+            /* background-color: black !important; */
+            background-color: yellow !important;
+        }
+
+        .container {
+            background-color: yellow !important;
+        }
+
+        .form-group-cont {
+            background-color: rgb(236, 55, 55) !important;
+        }
+
+        .ticketForm {
+            background-color: rgb(113, 113, 243) !important;
+        }
+
+        .contPinglabel {
+            background-color: rgb(28, 230, 61) !important;
+        }
+
+        .boxPing {
+            background-color: rgb(160, 71, 219) !important;
+        }
+
+        #contPinglabel {
+            background-color: gray;
+        }
+    </style> -->
+
+    <!-- ✅ CSS SE INYECTARÁ AQUÍ POR AutoHotkey -->
+    <!-- Variables, estilos globales, menú, animaciones -->
+<style>/*===============================================================================
+  ESTILOS DEL MENÚ - COMPONENTE REUTILIZABLE (IE11 Compatible)
+===============================================================================*/
+
+#menu-bar {
+    /* Gradiente compatible IE11 */
+    background: #667eea;
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#667eea', endColorstr='#764ba2', GradientType=1);
+    background: -ms-linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    height: 40px;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    position: relative;
+    top: 0;
+    z-index: 999;
+}
+
+/* Barra de menú */
+.menu-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    /* Flexbox compatible IE11 */
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-direction: row;
+    flex-direction: row;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -ms-flex-align: center;
+    align-items: center;
+    height: 100%;
+    background-color: #faf8f8;
+    border-bottom: 0.7px solid #eaf0f0;
+    cursor: pointer;
+}
+
+.menu-item {
+    margin: 0;
+    padding: 0;
+    display: inline-block;
+    vertical-align: middle;
+    cursor: pointer;
+}
+
+.menu-btn {
+    background: transparent;
+    border: 1px solid transparent;
+    color: #000000;
+    padding: 0 10px;
+    cursor: pointer;
+    font-family: 'Arial', Arial, Helvetica, sans-serif;
+    /* font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; */
+    font-size: 13px;
+    font-weight: 400;
+    /* Flexbox compatible IE11 */
+    display: -ms-inline-flexbox;
+    display: inline-flex;
+    -ms-flex-direction: row;
+    flex-direction: row;
+    -ms-flex-align: center;
+    align-items: center;
+    border-radius: 0;
+    -ms-transition: background 0.15s ease, border 0.15s ease;
+    transition: background 0.15s ease, border 0.15s ease;
+    height: 40px;
+    white-space: nowrap;
+    vertical-align: middle;
+}
+
+.menu-btn:hover {
+    background: #fcfcfc;
+    border: 1px solid #d0d0d0;
+    border-bottom: 1px solid #d0d0d0;
+}
+
+.menu-btn:active {
+    background: #fcfcfc;
+    border: 1px solid #b8b8b8;
+    border-bottom: 1px solid #b8b8b8;
+}
+
+.menu-icon {
+    font-size: 14px;
+    display: inline-block;
+    margin-right: 4px;
+    vertical-align: middle;
+    cursor: pointer;
+    line-height: 1;
+    width: 16px;
+    height: 16px;
+    position: relative;
+}
+
+/* Optimización para SVG inline - IE11 compatible */
+.menu-icon svg {
+    width: 16px !important;
+    height: 16px !important;
+    display: block !important;
+    pointer-events: none;
+    overflow: visible;
+    position: relative;
+    margin: 0;
+    padding: 0;
+}
+
+.menu-text {
+    display: inline-block;
+    /* text-transform: uppercase; */
+    letter-spacing: 0.3px;
+    vertical-align: middle;
+    cursor: pointer;
+}
+
+/* Animación de entrada compatible IE11 */
+@keyframes fadeInDown {
+    from {
+        opacity: 0;
+        -ms-transform: translateY(-10px);
+        transform: translateY(-10px);
+    }
+
+    to {
+        opacity: 1;
+        -ms-transform: translateY(0);
+        transform: translateY(0);
+    }
+}
+
+#menu-bar {
+    -ms-animation: fadeInDown 0.4s ease-out;
+    animation: fadeInDown 0.4s ease-out;
+}
+
+.btn-ping {
+    background-color: blue;
+}/*===============================================================================
+  ESTILOS GLOBALES DEL SISTEMA
+===============================================================================*/
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: #fcfcfc;
+    color: #1f1f1f;
+    padding: 0;
+    margin: 0;
+    overflow: hidden;
+}
+
+/* Contenedor principal */
+.container {
+    height: calc(100vh - 40px);
+    /* Resta altura del menú */
+    background: #fcfcfc;
+    padding: 20px 15px;
+    /* padding inferior del body */
+    /* padding-bottom: 18% !important; */
+    overflow-y: auto;
+}
+
+#form-group-cont {
+    background: transparent;
+    margin: 0;
+    padding: 0;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    text-transform: uppercase;
+}
+
+/* Modifica el margen inferior entre un label e input */
+#form-group-cont>* {
+    margin-bottom: 7px;
+}
+
+#form-group-cont>*:last-child {
+    margin-bottom: 0;
+}
+
+/* Scrollbar personalizado (solo WebKit, IE11 usa estilos nativos) */
+.container::-webkit-scrollbar {
+    width: 12px;
+}
+
+.container::-webkit-scrollbar-track {
+    background: #fcfcfc;
+}
+
+.container::-webkit-scrollbar-thumb {
+    background: #d1d1d1;
+    border-radius: 6px;
+    border: 2px solid #a71d1d;
+}
+
+.container::-webkit-scrollbar-thumb:hover {
+    background: #b8b8b8;
+}
+
+/* Header */
+.header {
+    margin-bottom: 20px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid #f3f0f0;
+}
+
+h1,
+h2,
+h3,
+h4 {
+    font-size: 14px;
+    font-weight: 600;
+    color: #1f1f1f;
+    margin: 0;
+}
+
+.subtitle {
+    font-size: 13px;
+    color: #616161;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   FORMULARIO CON LAYOUT HORIZONTAL
+   ═══════════════════════════════════════════════════════════ */
+
+.form-group {
+    margin-bottom: 5px;
+    width: 100%;
+    /* display: table; Descomentar para alineacion horizontal */
+}
+
+/* Layout horizontal SOLO para campos con esta clase */
+.form-group-horizontal {
+    /* Flexbox compatible IE11 */
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-align: center;
+    align-items: center;
+}
+
+.form-group-horizontal>* {
+    margin-right: 15px;
+}
+
+.form-group-horizontal>*:last-child {
+    margin-right: 0;
+}
+
+/* Cuando hay un btn-group después del input, quitar el margin-right del input */
+.form-group-horizontal input[type='text']+.btn-group,
+.form-group-horizontal input[type='tel']+.btn-group {
+    margin-left: 0;
+    margin-right: 0;
+}
+
+.form-group-horizontal input[type='text']:has(+ .btn-group),
+.form-group-horizontal input[type='tel']:has(+ .btn-group) {
+    margin-right: 0;
+}
+
+/* Para IE11, usar selector alternativo - input con botones */
+.form-group-horizontal input[type='text'][id='nombre'],
+.form-group-horizontal input[type='tel'][id='nombre'] {
+    margin-right: 0;
+    width: 60% !important;
+    -ms-flex: none;
+    flex: none;
+}
+
+.form-group-horizontal label {
+    margin-bottom: 0;
+    min-width: 180px;
+    max-width: 180px;
+    flex-shrink: 0;
+    text-align: left;
+}
+
+/* Labels normales (verticales) */
+label {
+    /* Comentar esta linea para modo HORIZONATAL */
+    display: block;
+    font-size: 12px;
+    font-weight: 600;
+    color: #1f1f1f;
+    margin-top: 0;
+    margin-bottom: 2px;
+    line-height: 1.2;
+    /* background-color: red; */
+}
+
+.required {
+    color: #c50f1f;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   INPUTS Y CONTROLES
+   ═══════════════════════════════════════════════════════════ */
+
+input[type='text'],
+input[type='tel'],
+select,
+textarea {
+    width: 60%;
+    box-sizing: border-box;
+    padding: 1px 1px;
+    /* Background labels,inputs, textarea */
+    /* background: #942b2b; */
+    background: #fcfcfc;
+    border: none !important;
+    border-bottom: 1px solid #f7f1f1 !important;
+    color: #2e2e2e;
+    font-size: 13px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.2;
+    margin-top: 0;
+    outline: none;
+    -ms-transition: border-color 0.2s ease;
+    transition: border-color 0.2s ease;
+    /* Permitir selección de texto para copiar/pegar */
+    -ms-user-select: text;
+    -webkit-user-select: text;
+    user-select: text;
+    /* margin-left: 8px; Descomentar para modo HORIZONTAL */
+}
+
+/* Inputs en layout horizontal ocupan espacio restante */
+.form-group-horizontal input[type='text'],
+.form-group-horizontal input[type='tel'] {
+    -ms-flex: 1;
+    flex: 1;
+}
+
+/* Contenedor para input + botones (mantener juntos) */
+.form-group-horizontal .input-with-buttons {
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex: 1;
+    flex: 1;
+    -ms-flex-align: center;
+    align-items: center;
+    position: relative;
+}
+
+.form-group-horizontal .input-with-buttons input {
+    -ms-flex: 1;
+    flex: 1;
+    margin-right: 0 !important;
+}
+
+input[type='text']:hover,
+input[type='tel']:hover,
+select:hover,
+textarea:hover {
+    border-color: #bfc8f1 !important;
+}
+
+input[type='text']:focus,
+input[type='tel']:focus,
+select:focus,
+textarea:focus {
+    background: #fcfcfc;
+    border-color: #667eea !important;
+    /* Box-shadow compatible IE11 */
+    -ms-box-shadow: 0 0 0 2px rgba(102, 126, 234, 0.2);
+    box-shadow: 0 0 0 2px rgba(102, 126, 234, 0.2);
+}
+
+textarea {
+    resize: vertical;
+    min-height: 120px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+}
+
+select {
+    cursor: pointer;
+    padding: 2px;
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 12 12"><path fill="%231f1f1f" d="M6 9L1 4h10z"/></svg>');
+    background-repeat: no-repeat;
+    background-position: right 12px center;
+    appearance: none !important;
+    border: 1px solid #f0eded !important;
+    /* background-color: #db2525; */
+    font-size: 15px;
+}
+
+/* .optionPing {
+} */
+
+/* Placeholder */
+input::placeholder,
+input::-webkit-input-placeholder,
+input::-ms-input-placeholder,
+input:-moz-placeholder,
+textarea::placeholder {
+    color: #8a8a8a;
+    opacity: 1;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   BOTONES
+   ═══════════════════════════════════════════════════════════ */
+
+.button-group {
+    /* Flexbox compatible IE11 */
+    display: -ms-flexbox;
+    display: flex;
+    margin-top: 24px;
+    padding-top: 24px;
+    border-top: 1px solid #e0e0e0;
+}
+
+.button-group>* {
+    margin-right: 12px;
+}
+
+.button-group>*:last-child {
+    margin-right: 0;
+}
+
+.btn {
+    padding: 12px 24px;
+    border: 1px solid #8a8a8a;
+    border-radius: 6px;
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    -ms-transition: all 0.2s ease;
+    transition: all 0.2s ease;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.btn-primary {
+    /* Gradiente compatible IE11 */
+    background: #667eea;
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#667eea', endColorstr='#764ba2', GradientType=1);
+    background: -ms-linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: #ffffff;
+    border-color: #667eea;
+    -ms-flex: 1;
+    flex: 1;
+}
+
+.btn-primary:hover {
+    -ms-transform: translateY(-2px);
+    transform: translateY(-2px);
+    -ms-box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+    box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+}
+
+.btn-primary:active {
+    -ms-transform: translateY(0);
+    transform: translateY(0);
+}
+
+.btn-secondary {
+    background: #ffffff;
+    color: #1f1f1f;
+}
+
+.btn-secondary:hover {
+    background: #f3f3f3;
+}
+
+.btn-secondary:active {
+    background: #e5e5e5;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   MENSAJE DE ÉXITO
+   ═══════════════════════════════════════════════════════════ */
+
+.success-msg {
+    display: none;
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    background: #ffffff;
+    border: 1px solid #d1d1d1;
+    border-left: 4px solid #0f7b0f;
+    padding: 16px 20px;
+    border-radius: 6px;
+    -ms-box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    -ms-animation: slideIn 0.3s ease-out;
+    animation: slideIn 0.3s ease-out;
+    z-index: 1000;
+}
+
+@keyframes slideIn {
+    from {
+        -ms-transform: translateX(400px);
+        transform: translateX(400px);
+        opacity: 0;
+    }
+
+    to {
+        -ms-transform: translateX(0);
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+.success-msg-content {
+    /* Flexbox compatible IE11 */
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-align: center;
+    align-items: center;
+    color: #1f1f1f;
+    font-size: 13px;
+}
+
+.success-msg-content>* {
+    margin-right: 12px;
+}
+
+.success-msg-content>*:last-child {
+    margin-right: 0;
+}
+
+.success-icon {
+    color: #0f7b0f;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+/* Contenedor de tooltip relativo al form-group */
+.form-group-horizontal {
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-align: center;
+    align-items: center;
+    position: relative;
+}
+
+.form-group-horizontal label {
+    margin-bottom: 0;
+    min-width: 180px;
+    max-width: 180px;
+    flex-shrink: 0;
+    text-align: left;
+}
+
+.form-group-horizontal input[type='text'],
+.form-group-horizontal input[type='tel'] {
+    -ms-flex: 1;
+    flex: 1;
+}
+
+/* Botones base */
+.btn-icon {
+    padding: 1px 1px;
+    background: #f5f5f5;
+    color: #fcfcfc;
+    border: none;
+    cursor: pointer;
+    font-size: 14px;
+    transition: all 0.2s;
+    min-width: 30px;
+    height: 24px;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-align: center;
+    align-items: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    margin-left: 0;
+    position: relative;
+}
+
+/* Contenedor de botones */
+.btn-group {
+    display: -ms-flexbox;
+    display: flex;
+    margin-left: 0;
+    margin-right: 0;
+    -ms-flex-negative: 0;
+    flex-shrink: 0;
+    -ms-flex-align: center;
+    align-items: center;
+}
+
+/* Primer botón - copiar */
+.btn-copy {
+    border-radius: 4px 0 0 4px;
+    border-right: 1px solid rgba(255, 255, 255, 0.2);
+    margin-left: 2px;
+}
+
+/* Segundo botón - ver */
+.btn-view {
+    border-radius: 0 4px 4px 0;
+    margin-left: 0;
+    border-left: none;
+}
+
+/* Cuando hay botones después del input, reducir espacio entre ellos */
+.form-group-horizontal input[type='text']+.btn-icon,
+.form-group-horizontal input[type='tel']+.btn-icon {
+    margin-left: 2px;
+}
+
+.form-group-horizontal .btn-icon+.btn-icon {
+    margin-left: 0;
+}
+
+.btn-icon:hover {
+    background: #5568d3;
+    transform: scale(1.05);
+    z-index: 1;
+}
+
+.btn-icon:active {
+    transform: scale(0.95);
+}
+
+/* Tooltip del path */
+.tooltip-path {
+    display: none;
+    position: absolute;
+    bottom: 100%;
+    right: 0;
+    margin-bottom: 8px;
+    background: #ddd8d8;
+    color: #9c9292;
+    padding: 6px 12px;
+    border-radius: 4px;
+    font-size: 10px;
+    white-space: nowrap;
+    z-index: 1000;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+/* Flecha del tooltip */
+.tooltip-path::after {
+    content: '';
+    position: absolute;
+    top: 100%;
+    right: 10px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: #2c2c2c transparent transparent transparent;
+}
+
+/* Mostrar tooltip al pasar sobre btn-view */
+.btn-view:hover~.tooltip-path {
+    display: block;
+}
+
+
+#contPinglabel {
+    width: 100%;
+    min-height: 60px;
+    max-height: 120px;
+    overflow-y: auto;
+    overflow-x: auto;
+    margin-top: 4px;
+    padding: 8px;
+    background-color: #f9f9f9;
+    border: 1px solid #e0e0e0;
+    border-radius: 4px;
+    font-family: 'Courier New', monospace;
+    font-size: 11px;
+    line-height: 1.4;
+    color: #2e2e2e;
+    box-sizing: border-box;
+    white-space: pre-wrap;
+    /* Preservar saltos de línea */
+    word-wrap: break-word;
+}
+
+/* #contPinglabel {
+    width: 100%;
+    min-height: 60px;
+    max-height: 120px;
+    overflow-y: auto;
+    overflow-x: auto;
+    margin-top: 4px;
+    padding: 4px;
+    background-color: #f9f9f9;
+    border: 1px solid #e0e0e0;
+    border-radius: 4px;
+    font-family: 'Courier New', monospace;
+    font-size: 11px;
+    line-height: 1.4;
+    color: #2e2e2e;
+    box-sizing: border-box;
+} */
+
+#boxPing {
+    font-size: 13px;
+    width: 90%;
+    height: 25px;
+    padding: 4px;
+    box-sizing: border-box;
+    background: #f9f9f9;
+    border: 1px solid #d1d1d1;
+    border-radius: 4px;
+    font-family: 'Courier New', monospace;
+    color: #2e2e2e;
+    display: block;
+}
+
+/* Forzar placeholder visible */
+#boxPing::-webkit-input-placeholder {
+    color: #8a8a8a !important;
+    opacity: 1 !important;
+}
+
+#boxPing:-ms-input-placeholder {
+    color: #8a8a8a !important;
+    opacity: 1 !important;
+}
+
+#boxPing::placeholder {
+    color: #8a8a8a !important;
+    opacity: 1 !important;
+}
+
+
+.btn-copy-ping {
+    /* display: inline; */
+    position: absolute;
+    padding: 4px 2px;
+    background: #90a2f3e5;
+    background: -o-repeating-linear-gradient(#0f7b0f) !important;
+    color: #fcfcfc;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: all 0.2s;
+    min-width: 32px;
+    height: 24px;
+    margin-left: 8px;
+}
+
+.btn-copy-ping:hover {
+    background: #5568d3;
+    transform: scale(1.05);
+}
+
+.btn-copy-ping:active {
+    transform: scale(0.95);
+}
+
+/* #copyNotification {
+    background-color: black !important;
+} */</style></head>
+
+<body>
+    <!-- ✅ MENÚ REUTILIZABLE SE INYECTARÁ AQUÍ -->
+    <nav id="menu-bar">
+
+    <ul class="menu-list">
+
+        <li class="menu-item">
+            <button class="menu-btn" id="btn-archivo">
+                <span class="menu-icon">
+                    <svg width="16" height="16" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M10 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2h-8l-2-2z"
+                            fill="#FFC107" />
+                    </svg>
+                </span>
+                <span class="menu-text">Archivo</span>
+            </button>
+        </li>
+
+        <li class="menu-item">
+            <button class="menu-btn" id="btn-opciones">
+                <!-- <span class="menu-icon">
+                    <svg width="16" height="16" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path
+                            d="M19.14 12.94c.04-.3.06-.62.06-.94 0-.32-.02-.64-.06-.94l2.02-1.58c.18-.14.24-.4.14-.62l-1.9-3.72c-.1-.22-.34-.34-.58-.34l-2.48.42c-.52-.4-1.08-.78-1.66-1.08l-.38-2.58c-.06-.26-.28-.46-.56-.46h-3.8c-.28 0-.5.2-.56.46l-.38 2.58c-.58.3-1.14.68-1.66 1.08l-2.48-.42c-.24-.04-.48.12-.58.34L2.7 8.86c-.1.22-.04.48.14.62l2.02 1.58c-.04.3-.06.62-.06.94 0 .32.02.64.06.94l-2.02 1.58c-.18.14-.24.4-.14.62l1.9 3.72c.1.22.34.34.58.34l2.48-.42c.52.4 1.08.78 1.66 1.08l.38 2.58c.06.26.28.46.56.46h3.8c.28 0 .5-.2.56-.46l.38-2.58c.58-.3 1.14-.68 1.66-1.08l2.48.42c.24.04.48-.12.58-.34l1.9-3.72c.1-.22.04-.48-.14-.62l-2.02-1.58zm-7.14 2.66c-1.98 0-3.6-1.62-3.6-3.6s1.62-3.6 3.6-3.6 3.6 1.62 3.6 3.6-1.62 3.6-3.6 3.6z"
+                            fill="#6C757D" />
+                    </svg>
+                </span> -->
+                <span class="menu-text">Opciones</span>
+            </button>
+        </li>
+
+        <li class="menu-item">
+            <button class="menu-btn" id="btn-limpiar">
+                <!-- <span class="menu-icon">
+                    <svg width="16" height="16" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z"
+                            fill="#DC3545" />
+                    </svg>
+                </span> -->
+                <span class="menu-text">Limpiar</span>
+            </button>
+        </li>
+
+        <li class="menu-item">
+            <button class="menu-btn" id="btn-copiar">
+                <!-- <span class="menu-icon">
+                    <svg width="16" height="16" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path
+                            d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"
+                            fill="#4A90E2" />
+                    </svg>
+                </span> -->
+                <span class="menu-text">Copiar</span>
+            </button>
+        </li>
+
+        <li class="menu-item">
+            <button class="menu-btn" id="btn-ping">
+                <!-- <span class="menu-text">&#128190</span> -->
+                <span class="menu-text">Ping</span>
+            </button>
+        </li>
+
+    </ul>
+</nav>
+
+    <!-- Contenedor principal -->
+    <div class="container">
+        <div class="header">
+            <h4>PLANTILLA BÁSICA OBLIGATORIA</h4>
+        </div>
+
+        <form id="ticketForm" onsubmit="return enviarFormulario();">
+            <div id="form-group-cont">
+
+                <div class="form-group form-group-horizontal">
+                    <label>NOMBRE DEL CLIENTE:</label>
+                    <input type="text" id="nombre" tabindex="1" required
+                        placeholder="Ingrese el nombre completo del cliente">
+                    <button type="button" class="btn-icon btn-copy" onclick="copiarValor('nombre')" tabindex="-1"
+                        title="Copiar valor">📄</button>
+                    <button type="button" class="btn-icon btn-view" tabindex="-1" title="Ver ruta">🐾</button>
+                    <div class="tooltip-path">Path: liberate/spinDB/Ots</div>
+                </div>
+
+                <div class="form-group form-group-horizontal">
+                    <label>NÚMERO DE CÉDULA:
+                        <!-- <span class="required">*</span> -->
+                    </label>
+                    <input type="text" id="cedula" tabindex="2" required placeholder="Ejemplo: 1234567890">
+                </div>
+
+                <div class="form-group form-group-horizontal">
+                    <label>TELÉFONO:
+                        <!-- <span class="required">*</span> -->
+                    </label>
+                    <input type="tel" id="telefono" tabindex="3" required placeholder="Ejemplo: 3001234567">
+                </div>
+
+                <div class="form-group form-group-horizontal">
+                    <label>CUENTA:
+                        <!-- <span class="required">*</span> -->
+                    </label>
+                    <input type="text" id="cuenta" tabindex="4" required placeholder="Número de cuenta">
+                </div>
+
+                <div class="form-group form-group-horizontal">
+                    <label>REPETITIVO:
+                        <!-- <span class="required">*</span> -->
+                    </label>
+                    <input type="text" id="repetitivo" tabindex="5" required placeholder="Dato repetitivo">
+                </div>
+
+                <div class="form-group form-group-horizontal">
+                    <label>GARANTÍA:
+                        <!-- <span class="required">*</span>-->
+                    </label>
+                    <input type="text" id="garantia" tabindex="6" required placeholder="Número de garantía">
+                </div>
+
+                <div class="form-group form-group-horizontal">
+                    <label>MASIVO:
+                        <!-- <span class="required">*</span> -->
+                    </label>
+                    <input type="text" id="masivo" tabindex="7" required placeholder="Dato masivo">
+                </div>
+
+                <div class="form-group form-group-horizontal">
+                    <label>RIESGO:
+                        <!-- <span class="required">*</span>-->
+                    </label>
+                    <input type="text" id="riesgo" tabindex="8" required placeholder="Nivel de riesgo">
+                </div>
+
+                <div class="form-group form-group-horizontal">
+                    <label>TELECABLE:
+                        <!-- <span class="required">*</span>-->
+                    </label>
+                    <input type="text" id="telecable" tabindex="9" required placeholder="ID Telecable">
+                </div>
+
+                <div class="form-group form-group-horizontal">
+                    <label>MOTIVO:
+                        <!-- <span class="required">*</span>-->
+                    </label>
+                    <!-- <input type="text" id="motivo" tabindex="10" required placeholder="Motivo de contacto"> -->
+                    <select name="" id="select">
+                        <option value="" selected>Seleccionar</option>
+                        <option class="optionPing" value="1">No Navega</option>
+                        <option class="optionPing" value="2">Sin señal</option>
+                        <option class="optionPing" value="3">Otro</option>
+                        <option class="optionPing" value="4">Intermitencia</option>
+                    </select>
+                    <!-- <span><button></button></span> -->
+                </div>
+
+                <div class="form-group form-group-horizontal contPinglabel">
+                    <input id="boxPing" type="text" placeholder="Introduce la IP Publica" inputmode="numeric"
+                        pattern="[0-9.]*">
+                    <!-- <button type="button" class="btn-icon btn-copy-ping" onclick="copiarEstadisticasPing()"
+                        tabindex="-1" title="Copiar estadísticas">📋</button> -->
+                    <div id="contPinglabel" style="display:none;width:80%;margin-top:4px; margin-bottom: #999494;">
+                    </div>
+                </div>
+
+            </div>
+
+        </form>
+    </div>
+
+    <div id="copyNotification"
+        style="display:none; position:fixed; top:30px; right:20px; background:#98e798; color:white; padding:10px 20px; border-radius:16px; font-size:12px; z-index:9999; box-shadow:0 4px 12px rgba(0,0,0,0.3);">
+        Copiado
+    </div>
+
+    <!-- ✅ JAVASCRIPT SE INYECTARÁ AQUÍ POR AutoHotkey -->
+    <!-- Scripts del menú, formulario y utilidades -->
+<script>// ===============================================================================
+// LOGICA DEL MENU - COMPONENTE REUTILIZABLE (Compatible IE11)
+// ===============================================================================
+
+(function () {
+    function inicializarMenu() {
+        var btnArchivo = document.getElementById('btn-archivo');
+        var btnOpciones = document.getElementById('btn-opciones');
+        var btnLimpiar = document.getElementById('btn-limpiar');
+        var btnCopiar = document.getElementById('btn-copiar');
+        var btnPing = document.getElementById('btn-ping');
+
+        if (btnArchivo) {
+            btnArchivo.onclick = menuArchivo;
+        }
+        if (btnOpciones) {
+            btnOpciones.onclick = menuOpciones;
+        }
+        if (btnLimpiar) {
+            btnLimpiar.onclick = menuLimpiar;
+        }
+        if (btnCopiar) {
+            btnCopiar.onclick = menuCopiar;
+        }
+        if (btnPing) {
+            btnPing.onclick = menuPing;
+        }
+    }
+
+    if (document.readyState === 'loading') {
+        if (document.addEventListener) {
+            document.addEventListener('DOMContentLoaded', inicializarMenu);
+        } else if (document.attachEvent) {
+            document.attachEvent('onreadystatechange', function () {
+                if (document.readyState === 'complete') {
+                    inicializarMenu();
+                }
+            });
+        }
+    } else {
+        inicializarMenu();
+    }
+})();
+
+function menuArchivo() {
+    alert('Menu Archivo - Funcionalidad en desarrollo');
+}
+
+function menuOpciones() {
+    alert('Menu Opciones - Funcionalidad en desarrollo');
+}
+
+function menuLimpiar() {
+    var confirmacion = confirm('Esta seguro de que desea limpiar todos los campos?\n\nSe perderan todos los datos ingresados.');
+    if (confirmacion) {
+        var formulario = document.getElementById('ticketForm');
+        if (formulario) {
+            formulario.reset();
+
+            // Limpiar input del ping
+            var boxPing = document.getElementById('boxPing');
+            if (boxPing) {
+                boxPing.value = '';
+                boxPing.style.color = '#2e2e2e';
+            }
+
+            // Limpiar contenedor de estadísticas del ping
+            var contPinglabel = document.getElementById('contPinglabel');
+            if (contPinglabel) {
+                contPinglabel.innerHTML = '';
+                contPinglabel.style.color = 'black';
+                contPinglabel.style.display = 'none';
+            }
+
+            // Resetear select a primera opción
+            var select = document.getElementById('select');
+            if (select && select.options.length > 0) {
+                select.selectedIndex = 0;
+            }
+
+            alert('Formulario limpiado correctamente');
+        }
+    }
+}
+
+function menuCopiar() {
+    try {
+        var nombre = document.getElementById('nombre');
+        var cedula = document.getElementById('cedula');
+        var telefono = document.getElementById('telefono');
+        var cuenta = document.getElementById('cuenta');
+
+        var texto = 'DATOS DEL FORMULARIO\n';
+        texto = texto + '===========================\n';
+        texto = texto + 'Nombre: ' + (nombre ? nombre.value : '') + '\n';
+        texto = texto + 'Cedula: ' + (cedula ? cedula.value : '') + '\n';
+        texto = texto + 'Telefono: ' + (telefono ? telefono.value : '') + '\n';
+        texto = texto + 'Cuenta: ' + (cuenta ? cuenta.value : '') + '\n';
+
+        if (window.clipboardData && window.clipboardData.setData) {
+            window.clipboardData.setData('Text', texto);
+            alert('Datos copiados al portapapeles');
+        } else {
+            alert('Copie estos datos:\n\n' + texto);
+        }
+    } catch (error) {
+        alert('Error al copiar: ' + error.message);
+    }
+}
+
+function menuPing() {
+    iniciarPing();
+}
+
+function copiarEstadisticasPing() {
+    var contPinglabel = document.getElementById('contPinglabel');
+    var textoTemp = contPinglabel ? contPinglabel.innerText : '';
+    // Limpiar espacios sin usar trim()
+    textoTemp = textoTemp.replace(/^[\s\uFEFF\xA0]+|[\s\uFEFF\xA0]+$/g, '');
+
+    if (!contPinglabel || !textoTemp || textoTemp === '') {
+        alert('No hay estadisticas para copiar');
+        return;
+    }
+
+    var texto = contPinglabel.innerText;
+
+    if (window.clipboardData && window.clipboardData.setData) {
+        window.clipboardData.setData('Text', texto);
+
+        var notif = document.getElementById('copyNotification');
+        if (notif) {
+            notif.innerHTML = 'Estadisticas copiadas';
+            notif.style.background = '#0f7b0f';
+            notif.style.display = 'block';
+        }
+    } else {
+        alert('Estadisticas copiadas:\n\n' + texto);
+    }
+}var copiando = false;
+
+var copiando = false;
+
+function copiarValor(inputId) {
+    if (copiando) return false;
+    copiando = true;
+
+    var input = document.getElementById(inputId);
+    if (!input) {
+        copiando = false;
+        return false;
+    }
+
+    var valor = input.value;
+    if (!valor) {
+        var notif = document.getElementById('copyNotification');
+        if (notif) {
+            notif.innerHTML = 'Campo vacio';
+            notif.style.background = '#c50f1f';
+            notif.style.display = 'block';
+        }
+        copiando = false;
+        return false;
+    }
+
+    input.select();
+    document.execCommand('copy');
+
+    var label = input.parentNode.getElementsByTagName('label')[0];
+    var nombreCampo = label ? label.innerText.replace(':', '') : 'Valor';
+
+    var notif = document.getElementById('copyNotification');
+    if (notif) {
+        notif.innerHTML = nombreCampo + ' copiado';
+        notif.style.background = '#0f7b0f';
+        notif.style.display = 'block';
+    }
+
+    copiando = false;
+    return false;
+}
+
+function irAlSiguiente(actualId, siguienteId) {
+    var actual = document.getElementById(actualId);
+    if (!actual) return;
+
+    actual.onkeydown = function (e) {
+        e = e || window.event;
+        var tecla = e.keyCode || e.which;
+
+        if (tecla === 13 || tecla === 9) {
+            e.returnValue = false;
+            e.cancelBubble = true;
+
+            if (siguienteId) {
+                var siguiente = document.getElementById(siguienteId);
+                if (siguiente) {
+                    siguiente.focus();
+                }
+            } else {
+                enviarFormulario();
+            }
+            return false;
+        }
+    };
+}
+
+irAlSiguiente('nombre', 'cedula');
+irAlSiguiente('cedula', 'telefono');
+irAlSiguiente('telefono', 'cuenta');
+irAlSiguiente('cuenta', 'repetitivo');
+irAlSiguiente('repetitivo', 'garantia');
+irAlSiguiente('garantia', 'masivo');
+irAlSiguiente('masivo', 'riesgo');
+irAlSiguiente('riesgo', 'telecable');
+irAlSiguiente('telecable', 'motivo');
+irAlSiguiente('motivo', null);
+
+function enviarFormulario() {
+    var nombre = document.getElementById('nombre').value;
+    var telefono = document.getElementById('telefono').value;
+    var cedula = document.getElementById('cedula').value;
+    var cuenta = document.getElementById('cuenta').value;
+    var motivo = document.getElementById('motivo').value;
+    var estPing = document.getElementById('estping').value;
+
+    var d = new Date();
+    var fecha = d.getDate() + '-' + (d.getMonth() + 1) + '-' + d.getFullYear();
+
+    document.title = 'TICKET|' + nombre + '|' + telefono + '|' + cedula + '|' + cuenta + '|' + motivo + '|' + fecha;
+
+    var msg = document.getElementById('successMsg');
+    if (msg) msg.style.display = 'block';
+
+    var f = document.getElementById('ticketForm');
+    if (f) f.reset();
+
+    return false;
+}
+
+
+setInterval(function () {
+    var notif = document.getElementById('copyNotification');
+    if (notif && notif.style.display === 'block') {
+        notif.style.display = 'none';
+    }
+}, 2000);// ===============================================================================
+// MODULO PING - Ejecucion asincrona (Compatible IE11)
+// ===============================================================================
+
+// POLYFILL para trim() en IE11
+if (!String.prototype.trim) {
+    String.prototype.trim = function () {
+        return this.replace(/^[\s\uFEFF\xA0]+|[\s\uFEFF\xA0]+$/g, '');
+    };
+}
+
+var pingEnEjecucion = false;
+
+function iniciarPing() {
+
+    if (pingEnEjecucion) {
+        var cancelar = confirm('Ya hay un ping en ejecucion.\n\nDesea cancelarlo?');
+        if (cancelar) {
+            document.title = 'CANCELAR_PING';
+            var contPinglabel = document.getElementById('contPinglabel');
+            if (contPinglabel) {
+                contPinglabel.innerHTML = 'Ping cancelado';
+                contPinglabel.style.color = '#c50f1f';
+                contPinglabel.style.display = 'block';
+            }
+            pingEnEjecucion = false;
+        }
+        return;
+    }
+
+    // 🔹 CAPTURAR IP DEL INPUT
+    var boxPing = document.getElementById('boxPing');
+    var ipObjetivo = '';
+
+    if (boxPing && boxPing.value) {
+        // Usar replace para limpiar espacios en lugar de trim()
+        ipObjetivo = boxPing.value.replace(/^[\s\uFEFF\xA0]+|[\s\uFEFF\xA0]+$/g, '');
+
+        if (ipObjetivo !== '') {
+            // Validación básica de IP (formato xxx.xxx.xxx.xxx)
+            var regexIP = /^(\d{1,3}\.){3}\d{1,3}$/;
+            if (!regexIP.test(ipObjetivo)) {
+                alert('Error: La IP ingresada no es valida.\n\nFormato esperado: xxx.xxx.xxx.xxx\nEjemplo: 192.168.1.1');
+                return;
+            }
+
+            // Validar rangos (0-255)
+            var octetos = ipObjetivo.split('.');
+            var ipValida = true;
+            for (var i = 0; i < octetos.length; i++) {
+                var num = parseInt(octetos[i], 10);
+                if (num < 0 || num > 255) {
+                    ipValida = false;
+                    break;
+                }
+            }
+
+            if (!ipValida) {
+                alert('Error: La IP contiene valores fuera de rango.\n\nCada octeto debe estar entre 0 y 255.');
+                return;
+            }
+        } else {
+            // Input vacío
+            ipObjetivo = '8.8.8.8';
+            alert('No se ingreso una IP.\n\nSe usara 8.8.8.8 (Google DNS) para la prueba.');
+        }
+    } else {
+        // Si el input está vacío o no existe, usar IP de Google por defecto
+        ipObjetivo = '8.8.8.8';
+        alert('No se ingreso una IP.\n\nSe usara 8.8.8.8 (Google DNS) para la prueba.');
+    }
+
+    var confirmacion = confirm('Desea ejecutar ping a ' + ipObjetivo + '?\n\nEsto tomara unos segundos (50 repeticiones).');
+    if (!confirmacion) return;
+
+    pingEnEjecucion = true;
+
+    var contPinglabel = document.getElementById('contPinglabel');
+    if (contPinglabel) {
+        contPinglabel.innerHTML = 'Ejecutando ping a ' + ipObjetivo + '...<br>Consulte la terminal para ver el progreso en tiempo real';
+        contPinglabel.style.color = '#667eea';
+        contPinglabel.style.display = 'block';
+    }
+
+    // 🔹 ENVIAR IP A AUTOHOTKEY VIA TÍTULO
+    document.title = 'EJECUTAR_PING|' + ipObjetivo;
+}
+
+function finalizarPing() {
+    pingEnEjecucion = false;
+}</script></body>
+
+</html>

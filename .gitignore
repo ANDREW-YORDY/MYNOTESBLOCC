@@ -1,0 +1,15 @@
+# Archivos compilados
+*.exe
+
+# Copias o temporales
+*.bak
+*.tmp
+*.log
+
+# Carpetas innecesarias
+/output/
+temp/
+
+# Arvhivos
+tickets.csv
+mapa_contenido_proyecto.txt
