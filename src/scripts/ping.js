@@ -78,7 +78,8 @@ function iniciarPing() {
     var contPinglabel = document.getElementById('contPinglabel');
     if (contPinglabel) {
         contPinglabel.innerHTML = 'Ejecutando ping a ' + ipObjetivo + '...<br>Consulte la terminal para ver el progreso en tiempo real';
-        contPinglabel.style.color = '#667eea';
+        contPinglabel.style.color = '#000000';
+        // contPinglabel.style.color = '#667eea';
         contPinglabel.style.display = 'block';
     }
 

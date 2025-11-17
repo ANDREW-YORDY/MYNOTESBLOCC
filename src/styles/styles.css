@@ -11,21 +11,28 @@
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     background: #fcfcfc;
-    color: #1f1f1f;
+    /* color: #1f1f1f; */
+    color: #000000;
     padding: 0;
     margin: 0;
     overflow: hidden;
 }
 
-/* Contenedor principal */
+/* CONTENEDOR PRINCIPAL, DESPUÉS DEL BODY */
 .container {
-    height: calc(100vh - 40px);
+    max-height: 90%;
+    /* height: calc(100vh - 40px); */
     /* Resta altura del menú */
     background: #fcfcfc;
-    padding: 20px 15px;
+    /* PADDING PRINCIPAL */
+    padding: 7px 15px;
     /* padding inferior del body */
     /* padding-bottom: 18% !important; */
     overflow-y: auto;
+}
+
+form {
+    margin-top: 4% !important;
 }
 
 #form-group-cont {
@@ -69,6 +76,7 @@ body {
 
 /* Header */
 .header {
+    margin-top: 5px !important;
     margin-bottom: 20px;
     padding-bottom: 12px;
     border-bottom: 1px solid #f3f0f0;
@@ -80,13 +88,15 @@ h3,
 h4 {
     font-size: 14px;
     font-weight: 600;
-    color: #1f1f1f;
+    /* color: #1f1f1f; */
+    color: #000000;
     margin: 0;
 }
 
 .subtitle {
     font-size: 13px;
-    color: #616161;
+    /* color: #616161; */
+    color: #000000;
 }
 
 /* ═══════════════════════════════════════════════════════════
@@ -151,7 +161,8 @@ label {
     display: block;
     font-size: 12px;
     font-weight: 600;
-    color: #1f1f1f;
+    color: #000000;
+    /* color: #1f1f1f; */
     margin-top: 0;
     margin-bottom: 2px;
     line-height: 1.2;
@@ -177,8 +188,9 @@ textarea {
     /* background: #942b2b; */
     background: #fcfcfc;
     border: none !important;
-    border-bottom: 1px solid #f7f1f1 !important;
-    color: #2e2e2e;
+    border-bottom: 1px solid #f3eeee !important;
+    /* color: #2e2e2e; */
+    color: #000000;
     font-size: 13px;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     line-height: 1.2;
@@ -219,17 +231,21 @@ textarea {
 
 input[type='text']:hover,
 input[type='tel']:hover,
+input[type='numeric']:hover,
 select:hover,
 textarea:hover {
-    border-color: #bfc8f1 !important;
+    /* border-color: #bfc8f1 !important; */
+    color: #000000 !important;
+    /* border-bottom: 0.5px solid #a6b5f7 !important; */
 }
 
 input[type='text']:focus,
+input[type='numeric']:focus,
 input[type='tel']:focus,
 select:focus,
 textarea:focus {
     background: #fcfcfc;
-    border-color: #667eea !important;
+    border-bottom: 0.5px solid #aab8f9 !important;
     /* Box-shadow compatible IE11 */
     -ms-box-shadow: 0 0 0 2px rgba(102, 126, 234, 0.2);
     box-shadow: 0 0 0 2px rgba(102, 126, 234, 0.2);
@@ -263,8 +279,9 @@ input::-webkit-input-placeholder,
 input::-ms-input-placeholder,
 input:-moz-placeholder,
 textarea::placeholder {
-    color: #8a8a8a;
-    opacity: 1;
+    /* color: #8a8a8a; */
+    color: #000000;
+    /* opacity: 1; */
 }
 
 /* ═══════════════════════════════════════════════════════════
@@ -306,7 +323,8 @@ textarea::placeholder {
     filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#667eea', endColorstr='#764ba2', GradientType=1);
     background: -ms-linear-gradient(135deg, #667eea 0%, #764ba2 100%);
     background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    color: #ffffff;
+    /* color: #ffffff; */
+    color: #000000;
     border-color: #667eea;
     -ms-flex: 1;
     flex: 1;
@@ -326,7 +344,8 @@ textarea::placeholder {
 
 .btn-secondary {
     background: #ffffff;
-    color: #1f1f1f;
+    color: #000000;
+    /* color: #1f1f1f; */
 }
 
 .btn-secondary:hover {
@@ -378,7 +397,8 @@ textarea::placeholder {
     display: flex;
     -ms-flex-align: center;
     align-items: center;
-    color: #1f1f1f;
+    /* color: #1f1f1f; */
+    color: #000000;
     font-size: 13px;
 }
 
@@ -519,74 +539,72 @@ textarea::placeholder {
     display: block;
 }
 
-
+/* div para visualizar resultado de estadísticas del ping */
 #contPinglabel {
-    width: 100%;
-    min-height: 60px;
-    max-height: 120px;
+    width: 98%;
+    padding: 0px;
+    margin: 0PX;
+    margin-top: 1px !important;
+    min-height: 70px;
+    max-height: 57px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 10px;
+    line-height: 1.3;
+    /* color: #2e2e2e; */
+    color: #000000;
     overflow-y: auto;
     overflow-x: auto;
-    margin-top: 4px;
-    padding: 8px;
-    background-color: #f9f9f9;
-    border: 1px solid #e0e0e0;
+    /* border: 1px solid #140101; */
     border-radius: 4px;
-    font-family: 'Courier New', monospace;
-    font-size: 11px;
-    line-height: 1.4;
-    color: #2e2e2e;
     box-sizing: border-box;
     white-space: pre-wrap;
     /* Preservar saltos de línea */
     word-wrap: break-word;
+    display: none;
+    background-color: #f9f9f9;
 }
 
-/* #contPinglabel {
-    width: 100%;
-    min-height: 60px;
-    max-height: 120px;
-    overflow-y: auto;
-    overflow-x: auto;
-    margin-top: 4px;
-    padding: 4px;
-    background-color: #f9f9f9;
-    border: 1px solid #e0e0e0;
-    border-radius: 4px;
-    font-family: 'Courier New', monospace;
-    font-size: 11px;
-    line-height: 1.4;
-    color: #2e2e2e;
-    box-sizing: border-box;
-} */
 
+
+
+/* #2 input de IP, del ping */
 #boxPing {
-    font-size: 13px;
-    width: 90%;
+    font-size: 14px;
+    width: 60%;
     height: 25px;
-    padding: 4px;
+    padding: 2px;
+    margin-left: 3px;
     box-sizing: border-box;
     background: #f9f9f9;
-    border: 1px solid #d1d1d1;
+    border-bottom: 1px solid #dbd1d1 !important;
     border-radius: 4px;
-    font-family: 'Courier New', monospace;
-    color: #2e2e2e;
+    /* font-family: 'Courier New', monospace; */
+    font-family: 'Segoe UI', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    /* color: #2e2e2e; */
+    color: #000000 !important;
     display: block;
+}
+
+#boxPing:focus {
+    border-bottom: 1px solid #aab8f9 !important;
 }
 
 /* Forzar placeholder visible */
 #boxPing::-webkit-input-placeholder {
-    color: #8a8a8a !important;
-    opacity: 1 !important;
+    /* color: #8a8a8a !important; */
+    color: #000000 !important;
+    /* opacity: 1 !important; */
 }
 
 #boxPing:-ms-input-placeholder {
-    color: #8a8a8a !important;
-    opacity: 1 !important;
+    color: #1c0202 !important;
+    /* opacity: 1 !important; */
 }
 
 #boxPing::placeholder {
-    color: #8a8a8a !important;
-    opacity: 1 !important;
+    /* color: #8a8a8a !important; */
+    color: #000000 !important;
+    /* opacity: 1 !important; */
 }
 
 
@@ -596,7 +614,8 @@ textarea::placeholder {
     padding: 4px 2px;
     background: #90a2f3e5;
     background: -o-repeating-linear-gradient(#0f7b0f) !important;
-    color: #fcfcfc;
+    /* color: #fcfcfc; */
+    color: #000000;
     border: none;
     border-radius: 4px;
     cursor: pointer;

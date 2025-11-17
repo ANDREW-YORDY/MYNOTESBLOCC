@@ -2,6 +2,7 @@
 <html lang="es">
 
 <head>
+    <!-- Ese motor es equivalente a IE8–IE9, incluso si tengas IE11 instalado. -->
     <meta http-equiv="X-UA-Compatible" content="IE=11">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,7 +12,7 @@
     <!-- <style>
         body {
             /* background-color: black !important; */
-            background-color: yellow !important;
+            background-color: rgb(0, 0, 0) !important;
         }
 
         .container {
@@ -26,16 +27,28 @@
             background-color: rgb(113, 113, 243) !important;
         }
 
+        /* #1 Contenedor del input & div del Ping */
         .contPinglabel {
-            background-color: rgb(28, 230, 61) !important;
+            background-color: rgb(249, 249, 255) !important;
         }
 
+        /* #2 input de IP, del ping */
         .boxPing {
-            background-color: rgb(160, 71, 219) !important;
+            background-color: rgb(46, 6, 73) !important;
         }
 
+        /* #3 Div del ping. Donde se visualiza el resultados de esttadísticas */
         #contPinglabel {
-            background-color: gray;
+            background-color: rgb(94, 156, 243) !important;
+        }
+
+        form {
+            background-color: red;
+        }
+
+        /* INPUT PARA INGRESAR LA IP */
+        #boxPing {
+            background-color: rgb(217, 206, 206);
         }
     </style> -->
 
@@ -138,12 +151,13 @@
                 </div>
 
                 <div class="form-group form-group-horizontal contPinglabel">
-                    <input id="boxPing" type="text" placeholder="Introduce la IP Publica" inputmode="numeric"
+                    <input id="boxPing" type="text" placeholder="Introduce la IP Publica" inputmode="text"
                         pattern="[0-9.]*">
                     <!-- <button type="button" class="btn-icon btn-copy-ping" onclick="copiarEstadisticasPing()"
                         tabindex="-1" title="Copiar estadísticas">📋</button> -->
-                    <div id="contPinglabel" style="display:none;width:80%;margin-top:4px; margin-bottom: #999494;">
-                    </div>
+
+                    <!-- div, para ver el resultad de estadisticas del ping -->
+                    <div id="contPinglabel"></div>
                 </div>
 
             </div>
@@ -152,12 +166,49 @@
     </div>
 
     <div id="copyNotification"
-        style="display:none; position:fixed; top:30px; right:20px; background:#98e798; color:white; padding:10px 20px; border-radius:16px; font-size:12px; z-index:9999; box-shadow:0 4px 12px rgba(0,0,0,0.3);">
+        style="display:none; position:fixed; top:30px; right:20px; background:#a7eea7; color:rgb(94, 15, 15); padding:10px 20px; font-size:12px; z-index:9999; box-shadow:0 4px 12px rgba(0,0,0,0.3);">
         Copiado
     </div>
 
     <!-- ✅ JAVASCRIPT SE INYECTARÁ AQUÍ POR AutoHotkey -->
     <!-- Scripts del menú, formulario y utilidades -->
+
+
+    <script>
+        (function () {
+            var inputs = document.getElementsByTagName("input");
+
+            for (var i = 0; i < inputs.length; i++) {
+                (function (input) {
+                    var ph = input.getAttribute("placeholder");
+                    if (!ph) return;
+
+                    // Inicializar si está vacío
+                    if (input.value === "") {
+                        input.value = ph;
+                        input.style.color = "#777"; // Apariencia de placeholder
+                    }
+
+                    // Cuando entra al input
+                    input.onfocus = function () {
+                        if (input.value === ph) {
+                            input.value = "";
+                            input.style.color = "";
+                        }
+                    };
+
+                    // Cuando sale del input
+                    input.onblur = function () {
+                        if (input.value === "") {
+                            input.value = ph;
+                            input.style.color = "#777";
+                        }
+                    };
+                })(inputs[i]);
+            }
+        })();
+
+    </script>
 </body>
 
 </html>

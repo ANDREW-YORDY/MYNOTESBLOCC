@@ -199,7 +199,8 @@ EjecutarPing() {
 
         contPingElem := navegador.document.getElementById("contPinglabel")
         contPingElem.innerHTML := "Ejecutando ping a " . ipObjetivo . "...<br>50 paquetes (aprox. 50 segundos)<br><br>Por favor espere..."
-        contPingElem.style.color := "#667eea"
+        ; contPingElem.style.color := "#667eea"
+        ; contPingElem.style.color := "#000000"
         contPingElem.style.display := "block"
 
         comando := 'cmd.exe /c "chcp 65001 > nul && ping -n 50 ' . ipObjetivo . ' | findstr /C:""Estadísticas"" /C:""Paquetes"" /C:""perdidos"" /C:""Tiempos"" /C:""Mínimo"" > "' . archivoTemp . '""'
@@ -377,9 +378,13 @@ VerificarProcesoTerminado(PID) {
                 ; 🔹 Validación más flexible (mínimo 50 caracteres)
                 if (StrLen(contenido) > 50) {
                     ; Convertir saltos de línea a HTML
+
+                    ; ESTILOS PARA TEXTO MOSTRADO DE ESTADÍSTICAS PING.
                     contenidoHTML := StrReplace(contenido, "`n", "<br>")
                     contPingElem.innerHTML := contenidoHTML
-                    contPingElem.style.color := "#0f7b0f"
+                    contPingElem.style.color := "#106610" ; -> COLOR VERDE
+                    ;contPingElem.style.color := "#000000"
+
                 } else {
                     contPingElem.innerHTML := "Error: Respuesta incompleta del ping.<br><br>Contenido recibido:<br>" . StrReplace(contenido, "`n", "<br>")
                     contPingElem.style.color := "#c50f1f"
@@ -424,7 +429,8 @@ VerificarProcesoTerminado(PID) {
     if (Mod(intentos, 10) = 0 && intentos > 0) {
         contPingElem := navegador.document.getElementById("contPinglabel")
         contPingElem.innerHTML := "Ping en progreso... (" . intentos . " segundos)<br>Esperando finalización..."
-        contPingElem.style.color := "#667eea"
+        ; contPingElem.style.color := "#667eea"
+        contPingElem.style.color := "#000000"
         contPingElem.style.display := "block"
     }
 

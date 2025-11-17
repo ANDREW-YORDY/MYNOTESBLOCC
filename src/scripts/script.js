@@ -16,8 +16,10 @@ function copiarValor(inputId) {
     if (!valor) {
         var notif = document.getElementById('copyNotification');
         if (notif) {
-            notif.innerHTML = 'Campo vacio';
+            notif.innerHTML = 'Campo vacio 🤪';
             notif.style.background = '#c50f1f';
+            notif.style.color = '#ffffff';
+            notif.style.fontSize = '14px';
             notif.style.display = 'block';
         }
         copiando = false;
